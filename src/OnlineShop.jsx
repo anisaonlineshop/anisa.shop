@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import products from "./products.json";
-import Head from 'next/head';
 
 function OnlineShop() {
   const [selectedProduct, setSelectedProduct] = useState(null);
