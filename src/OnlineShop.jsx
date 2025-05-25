@@ -1,82 +1,64 @@
-import React, { useState } from "react";
+import React from "react";
 import products from "./products.json";
 
-function OnlineShop() {
-  const [selectedProduct, setSelectedProduct] = useState(null);
-
+export default function OnlineShop() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-4xl font-semibold text-center mb-6">Anisa Online Shop</h1>
-      <p className="text-center text-gray-600 mb-10">Elegance in every drop ✨</p>
+    <main className="min-h-screen bg-background text-primary font-sans p-6">
+      <header className="max-w-6xl mx-auto mb-8 text-center">
+        <h1 className="text-4xl font-bold mb-2">Welcome to Anisa Online Shop</h1>
+        <p className="text-lg text-gray-600">Lowest price online</p>
+      </header>
 
-      <div cclassName="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 bg-background">
+      <section className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 bg-background rounded">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-2xl shadow-md p-4 hover:shadow-lg transition cursor-pointer"
-            onClick={() => setSelectedProduct(product)}
+            className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition"
           >
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-48 object-cover rounded-lg mb-3"
+              className="w-full h-48 object-cover rounded mb-4"
             />
-            <h2 className="text-xl font-semibold">{product.name}</h2>
-            <p className="text-gray-600">{product.description}</p>
-            <p className="text-lg mt-2 font-bold text-gray-800">${product.price}</p>
-            <button className="bg-accent text-white px-4 py-2 rounded-lg hover:bg-highlight transition">
-              Buy Now
-            </button>
+            <h2 className="text-xl font-semibold mb-1">{product.name}</h2>
+            <p className="text-gray-500 mb-3">{product.description}</p>
+            <p className="text-lg font-bold mb-4">${product.price}</p>
+
+            <form
+              action="https://formsubmit.co/anisa.online.handel@gmail.com"
+              method="POST"
+              className="flex flex-col gap-2"
+            >
+              {/* Hidden inputs for Formsubmit */}
+              <input type="hidden" name="_subject" value={`New Order: ${product.name}`} />
+              <input type="hidden" name="productName" value={product.name} />
+              <input type="hidden" name="productPrice" value={product.price} />
+              <input
+                type="text"
+                name="_honey"
+                style={{ display: "none" }}
+                autoComplete="off"
+              />
+              <input type="hidden" name="_captcha" value="false" />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email"
+                required
+                className="border border-gray-300 rounded px-3 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-accent"
+              />
+
+              <button
+                type="submit"
+                className="bg-accent text-white px-4 py-2 rounded-lg hover:bg-highlight transition"
+              >
+                Buy Now
+              </button>
+            </form>
           </div>
         ))}
-      </div>
-
-      {selectedProduct && (
-        <div className="mt-16 max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4">Order: {selectedProduct.name}</h2>
-          <form
-            action="https://formsubmit.co/YOUR_EMAIL_HERE"
-            method="POST"
-            className="grid gap-4"
-          >
-            <input type="hidden" name="_subject" value={`Order: ${selectedProduct.name}`} />
-            <input type="hidden" name="Product" value={selectedProduct.name} />
-            <input type="hidden" name="Price" value={selectedProduct.price} />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="text" name="_honey" style={{ display: "none" }} />
-
-            <input
-              type="text"
-              name="Name"
-              placeholder="Your name"
-              className="border border-gray-300 rounded-lg p-3"
-              required
-            />
-            <input
-              type="email"
-              name="Email"
-              placeholder="Your email"
-              className="border border-gray-300 rounded-lg p-3"
-              required
-            />
-            <textarea
-              name="Message"
-              placeholder="Shipping address or message"
-              className="border border-gray-300 rounded-lg p-3"
-              required
-            />
-
-            <button
-              type="submit"
-              className="bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-700 transition"
-            >
-              Submit Order
-            </button>
-          </form>
-        </div>
-      )}
-    </div>
+      </section>
+    </main>
   );
 }
-
-export default OnlineShop;
