@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Cool T-Shirt",
+    "price": 25,
+    "description": "A stylish cotton t-shirt.",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 2,
+    "name": "Nice Mug",
+    "price": 15,
+    "description": "Perfect mug for coffee lovers.",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 3,
+    "name": "Comfy Hoodie",
+    "price": 45,
+    "description": "Stay warm and cozy.",
+    "image": "https://via.placeholder.com/150"
+  }
+]
