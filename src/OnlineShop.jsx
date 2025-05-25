@@ -9,7 +9,7 @@ function OnlineShop() {
       <h1 className="text-4xl font-semibold text-center mb-6">Anisa Online Shop</h1>
       <p className="text-center text-gray-600 mb-10">Elegance in every drop ✨</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div cclassName="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 bg-background">
         {products.map((product) => (
           <div
             key={product.id}
@@ -24,7 +24,7 @@ function OnlineShop() {
             <h2 className="text-xl font-semibold">{product.name}</h2>
             <p className="text-gray-600">{product.description}</p>
             <p className="text-lg mt-2 font-bold text-gray-800">${product.price}</p>
-            <button className="mt-3 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition">
+            <button className="bg-accent text-white px-4 py-2 rounded-lg hover:bg-highlight transition">
               Buy Now
             </button>
           </div>
