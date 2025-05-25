@@ -2,9 +2,11 @@
   {
     "id": 1,
     "name": "Aachi Kakka",
-    "price": 5000,
     "description": "A stylish green kakka.",
+	"price": 5000,
     "image": "/images/aachi.jpg"
+	"category": "electronics",
+    "inventory": 5
   },
   {
     "id": 2,
