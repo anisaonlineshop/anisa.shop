@@ -1,98 +1,82 @@
 import React, { useState } from "react";
-import productsData from "./products.json";
+import products from "./products.json";
 
-const OnlineShop = () => {
-  const [cart, setCart] = useState([]);
-  const [email, setEmail] = useState("");
-
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
+function OnlineShop() {
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">My Online Shop</h1>
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <h1 className="text-4xl font-semibold text-center mb-6">Anisa Online Shop</h1>
+      <p className="text-center text-gray-600 mb-10">Elegance in every drop ✨</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        {productsData.map((product) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {products.map((product) => (
           <div
             key={product.id}
-            className="border rounded-xl p-4 shadow hover:shadow-md"
+            className="bg-white rounded-2xl shadow-md p-4 hover:shadow-lg transition cursor-pointer"
+            onClick={() => setSelectedProduct(product)}
           >
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-40 object-cover mb-2 rounded"
+              className="w-full h-48 object-cover rounded-lg mb-3"
             />
             <h2 className="text-xl font-semibold">{product.name}</h2>
-            <p className="text-sm text-gray-600">{product.description}</p>
-            <p className="font-bold mt-1">${product.price}</p>
-            <button
-              className="bg-blue-600 text-white px-4 py-1 mt-2 rounded hover:bg-blue-700"
-              onClick={() => addToCart(product)}
-            >
-              Add to Cart
+            <p className="text-gray-600">{product.description}</p>
+            <p className="text-lg mt-2 font-bold text-gray-800">${product.price}</p>
+            <button className="mt-3 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition">
+              Buy Now
             </button>
           </div>
         ))}
       </div>
 
-      <h2 className="text-2xl font-bold mb-2">Cart</h2>
-      {cart.length === 0 ? (
-        <p className="text-gray-500">Cart is empty.</p>
-      ) : (
-        <>
-          <ul className="mb-4">
-            {cart.map((item, index) => (
-              <li key={index} className="text-gray-800">
-                {item.name} - ${item.price}
-              </li>
-            ))}
-          </ul>
-
+      {selectedProduct && (
+        <div className="mt-16 max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-6">
+          <h2 className="text-2xl font-semibold mb-4">Order: {selectedProduct.name}</h2>
           <form
-            action="https://formsubmit.co/anisa.online.handel@gmail.com"
+            action="https://formsubmit.co/YOUR_EMAIL_HERE"
             method="POST"
-            className="flex flex-col gap-2 border-t pt-4"
+            className="grid gap-4"
           >
+            <input type="hidden" name="_subject" value={`Order: ${selectedProduct.name}`} />
+            <input type="hidden" name="Product" value={selectedProduct.name} />
+            <input type="hidden" name="Price" value={selectedProduct.price} />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" style={{ display: "none" }} />
+
+            <input
+              type="text"
+              name="Name"
+              placeholder="Your name"
+              className="border border-gray-300 rounded-lg p-3"
+              required
+            />
             <input
               type="email"
-              name="email"
-              required
+              name="Email"
               placeholder="Your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="border p-2 rounded"
+              className="border border-gray-300 rounded-lg p-3"
+              required
             />
-
-            {/* Hidden input to send cart as text */}
-            <input
-              type="hidden"
-              name="order"
-              value={cart.map((item) => `${item.name} - $${item.price}`).join(", ")}
+            <textarea
+              name="Message"
+              placeholder="Shipping address or message"
+              className="border border-gray-300 rounded-lg p-3"
+              required
             />
-			
-			<div style={{ display: "none" }}>
-    <input type="text" name="_honey" />
-    <input type="hidden" name="_captcha" value="false" />
-  </div>
-
-  <button type="submit">Place Order</button>
-
-            {/* Optional: Redirect URL after submit */}
-            <input type="hidden" name="_next" value="https://thankyou-page.com" />
 
             <button
               type="submit"
-              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+              className="bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-700 transition"
             >
-              Place Order via Email
+              Submit Order
             </button>
           </form>
-        </>
+        </div>
       )}
     </div>
   );
-};
+}
 
 export default OnlineShop;
