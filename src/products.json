@@ -5,8 +5,6 @@
     "description": "A stylish green kakka.",
 	"price": 5000,
     "image": "/images/aachi.jpg"
-	"category": "electronics",
-    "inventory": 5
   },
   {
     "id": 2,
