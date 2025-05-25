@@ -1,3 +1,6 @@
 git add .
 git commit -m "Updated products and layout"
 git push
+
+
+npm run build

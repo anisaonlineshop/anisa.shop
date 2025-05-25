@@ -13,3 +13,8 @@ h1, h2, h3 {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom utility class for inputs */
+.input {
+  @apply border border-gray-300 rounded-lg p-3;
+}
